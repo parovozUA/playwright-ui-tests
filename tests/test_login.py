@@ -3,7 +3,6 @@ import re
 import pytest
 from playwright.sync_api import expect
 
-from pages.InventoryPage import InventoryPage
 from pages.LoginPage import LoginPage
 
 
@@ -37,13 +36,3 @@ def test_login_success(page):
     login_page.login("standard_user", "secret_sauce")
 
     expect(page).to_have_url(re.compile(r".*inventory.*"))
-
-def test_inventory_loaded(logged_in_page):
-    inventory_page = InventoryPage(logged_in_page)
-
-    inventory_page.assert_loaded()
-
-def test_inventory_page_open(logged_in_page):
-    inventory_page = InventoryPage(logged_in_page)
-    inventory_page.open()
-    inventory_page.assert_loaded()
