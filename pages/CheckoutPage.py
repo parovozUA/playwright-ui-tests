@@ -1,3 +1,4 @@
+from data.CheckoutForm import CheckoutForm
 from pages.BasePage import BasePage
 
 
@@ -24,7 +25,7 @@ class CheckoutPage(BasePage):
     def fill_postal_code(self, postal_code):
         self.postal_code_input.fill(postal_code)
 
-    def fill_checkout_form(self, first_name, last_name, postal_code):
-        self.fill_first_name(first_name)
-        self.fill_last_name(last_name)
-        self.fill_postal_code(postal_code)
+    def fill_checkout_form(self, checkout_form: CheckoutForm):
+        self.fill_first_name(checkout_form.first_name)
+        self.fill_last_name(checkout_form.last_name)
+        self.fill_postal_code(checkout_form.postal_code)
