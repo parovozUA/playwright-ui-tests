@@ -1,3 +1,5 @@
+import re
+
 from playwright.sync_api import expect
 
 from pages.InventoryPage import InventoryPage
@@ -14,4 +16,5 @@ def test_add_to_cart(logged_in_page):
 
     inventory_page.open_cart()
 
+    expect(cart_page.page).to_have_url(re.compile(".*cart.html"))
     expect(cart_page.cart_items).to_have_count(1)
