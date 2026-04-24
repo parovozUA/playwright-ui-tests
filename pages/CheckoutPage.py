@@ -1,4 +1,4 @@
-from playwright.async_api import expect
+from playwright.sync_api import expect
 
 from data.CheckoutForm import CheckoutForm
 from pages.BasePage import BasePage
@@ -16,7 +16,7 @@ class CheckoutPage(BasePage):
         self.back_to_home_button = page.locator('#back-to-products')
 
         self.error_button = page.get_by_test_id('error-button')
-        self.error_message_container = page.get_by_test_id('error')
+        self.error_message = page.get_by_test_id('error')
 
     def fill_first_name(self, first_name):
         self.first_name_input.fill(first_name)
@@ -31,7 +31,3 @@ class CheckoutPage(BasePage):
         self.fill_first_name(checkout_form.first_name)
         self.fill_last_name(checkout_form.last_name)
         self.fill_postal_code(checkout_form.postal_code)
-
-    def assert_error_message(self, error_message: str):
-        expect(self.error_message_container).to_be_visible()
-        expect(self.error_message_container).to_contain_text(error_message)
