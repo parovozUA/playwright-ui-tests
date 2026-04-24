@@ -1,49 +1,48 @@
 from dataclasses import dataclass
+
+from data.BaseTestCase import BaseCase
 from data.Users import User
 
 from data.Users import Users
 
 
 @dataclass
-class LoginCase:
-    name: str
+class LoginCase(BaseCase):
     user: User
-    should_pass: bool
-    error_message: str | None = None
 
 
 LOGIN_CASES = [
     LoginCase(
-        "valid user",
+        name="valid user",
         user=Users.VALID,
         should_pass=True
     ),
     LoginCase(
-        "wrong username",
+        name="wrong username",
         user=Users.WRONG_USERNAME,
         should_pass=False,
         error_message="Username and password do not match"
     ),
     LoginCase(
-        "wrong password",
+        name="wrong password",
         user=Users.WRONG_PASSWORD,
         should_pass=False,
         error_message="Username and password do not match"
     ),
     LoginCase(
-        "empty username",
+        name="empty username",
         user=Users.EMPTY_USERNAME,
         should_pass=False,
         error_message="Username is required"
     ),
     LoginCase(
-        "empty password",
+        name="empty password",
         user=Users.EMPTY_PASSWORD,
         should_pass=False,
         error_message="Password is required"
     ),
     LoginCase(
-        "locked user",
+        name="locked user",
         user=Users.LOCKED,
         should_pass=False,
         error_message="Sorry, this user has been locked out"
