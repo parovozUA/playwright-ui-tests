@@ -3,7 +3,7 @@ import re
 import pytest
 from playwright.sync_api import expect
 
-from data.LoginCases import LOGIN_CASES
+from data.LoginCases import LOGIN_CASES, LoginCase
 from data.Users import Users
 from pages.LoginPage import LoginPage
 from utils.helpers import assert_error_message
@@ -11,10 +11,9 @@ from utils.helpers import assert_error_message
 
 @pytest.mark.parametrize(
     "case",
-    LOGIN_CASES,
-    ids=[case.name for case in LOGIN_CASES]
+    LOGIN_CASES
 )
-def test_login_form_validation(page, case):
+def test_login_form_validation(page, case: LoginCase):
     login_page = LoginPage(page)
 
     login_page.open()

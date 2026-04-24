@@ -1,5 +1,3 @@
-from playwright.sync_api import expect
-
 from data.CheckoutForm import CheckoutForm
 from pages.BasePage import BasePage
 

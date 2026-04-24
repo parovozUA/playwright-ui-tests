@@ -11,8 +11,7 @@ from utils.helpers import assert_error_message
 
 @pytest.mark.parametrize(
     "case",
-    CHECKOUT_CASES,
-    ids=[case.name for case in CHECKOUT_CASES]
+    CHECKOUT_CASES
 )
 def test_checkout_form_validation(logged_in_page, case: CheckoutCase):
     if case.xfail_reason:
