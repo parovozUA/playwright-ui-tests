@@ -57,7 +57,7 @@ jobs:
       - name: Merge results
         run: |
           mkdir merged-results
-          find allure-results -type f -name "*.json" -exec cp {} merged-results \;
+          cp -r allure-results/*/* merged-results/ || true
 
       - name: Get Allure history
         uses: actions/checkout@v4
@@ -80,7 +80,7 @@ jobs:
         run: |
           mkdir -p merged-results
 
-          echo "Environment=CI" >> merged-results/environment.properties
+          echo "Environment=CI" > merged-results/environment.properties
           echo "Branch=${{ github.ref_name }}" >> merged-results/environment.properties
           echo "Commit=${{ github.sha }}" >> merged-results/environment.properties
 
