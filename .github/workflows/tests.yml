@@ -76,6 +76,14 @@ jobs:
           sudo mv allure-${ALLURE_VERSION} /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
 
+      - name: Create Allure environment file
+        run: |
+          mkdir -p merged-results
+
+          echo "Environment=CI" >> merged-results/environment.properties
+          echo "Branch=${{ github.ref_name }}" >> merged-results/environment.properties
+          echo "Commit=${{ github.sha }}" >> merged-results/environment.properties
+
       - name: Generate report
         run: |
           mkdir -p merged-results/history
