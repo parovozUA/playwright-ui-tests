@@ -9,9 +9,13 @@ def configure_selectors(playwright):
 
 
 @pytest.fixture(autouse=True)
-def enrich_report(browser):
+def enrich_report(page):
+    browser = page.context.browser
+
+    browser_name = browser.browser_type.name
     browser_version = browser.version
 
+    allure.dynamic.parameter("browser", browser_name)
     allure.dynamic.parameter("browser_version", browser_version)
 
 
